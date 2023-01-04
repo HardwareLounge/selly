@@ -24,4 +24,3 @@ ENV PYTHONUNBUFFERED=true
 
 # Start app
 CMD ["python3", "main.py"]
-
