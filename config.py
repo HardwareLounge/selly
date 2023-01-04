@@ -2,6 +2,7 @@ import os
 from typing import List, Optional, Union
 
 import yaml
+from humanfriendly import parse_timespan
 
 
 class Config:
@@ -12,19 +13,23 @@ class Config:
                 self._yml = yaml.safe_load(f)
         else:
             self._yml = {}
-        # Get values
+        # General
         self.token = self._get("token")
         self.guilds = self._get("guilds", is_list=True)
         self.channels = self._get("channels", is_list=True)
+        # Delete message whitout link
         self.message_title = self._get("message_title")
         self.message_description = self._get("message_description")
         message_color = self._get("message_color", "FF0000")
         if message_color.startswith("#"):
             message_color = message_color[1:]
-        if message_color.startswith("0x"):
+        elif message_color.startswith("0x"):
             message_color = message_color[2:]
         self.message_color = int(message_color, 16)
-        self.delete_message_after_seconds = int(self._get("delete_message_after_seconds", "60"))
+        self.delete_message_after = parse_timespan(self._get("delete_message_after_seconds", "30 seconds"))
+        # Delete old messages
+        self.delete_messages_every = parse_timespan(self._get("delete_messages_every", "30 minutes"))
+        self.delete_messages_older_than = parse_timespan(self._get("delete_messages_older_than", "2 weeks"))
 
     def _get(self, key: str, default: Optional[str] = None, is_list: bool = False) -> Union[str, List[int]]:
         """Get a value from the config"""
