@@ -30,7 +30,7 @@ class Client(disnake.Client):
             return
         # Check if there is a link in the message
         link_in_message = False
-        for word in message.content.split("\n"):
+        for word in message.content.split(" "):
             print(word)
             if word.startswith("http://") or word.startswith("https://"):
                 link_in_message = True
