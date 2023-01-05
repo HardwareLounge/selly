@@ -6,7 +6,7 @@ Manages the sales ads of the [HardwareLounge Discord server](https://discord.gg/
 
 Invite the bot with the following link:
 
-`https://discord.com/api/oauth2/authorize?client_id=` CLIENT ID `&permissions=11264&scope=bot`
+`https://discord.com/api/oauth2/authorize?client_id=` CLIENT ID `&permissions=93184&scope=bot`
 
 You can find the client ID in the [Discord Developer Portal](https://discord.com/developers/applications "Discord Developer Portal").
 
