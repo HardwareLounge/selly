@@ -54,7 +54,7 @@ DELETE_OLD_MESSAGES_EVERY: The [time](#timespan-examples) after which the bot wi
 
 DELETE_OLD_MESSAGES_OLDER_THAN: The [time](#timespan-examples) after which a message will be deleted. Default: `2 weeks`
 
-### Config file (for local)
+### Config file (for [local](#local))
 
 Create a `config.yml` file in the root directory of the project. Use the YAML format and use lowercase for the keys.
 
@@ -80,7 +80,7 @@ delete_old_messages_every: 5 minutes
 delete_old_messages_older_than: 1 day
 ```
 
-### Environment variables (for Docker)
+### Environment variables (for [Docker](#docker))
 
 Use uppercase for the keys. Lists are separated by a comma. The environment variables will override the config file.
 
