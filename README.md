@@ -38,7 +38,7 @@ GUILDS: A list of guild IDs where the bot is allowed to run.
 
 CHANNELS: A list of channel IDs where the bot is allowed to run.
 
-### Delete message without link
+### Message when deleting a message without valid link
 
 MESSAGE_TITLE: The title of the message that will be sent when a message is deleted. Default: `Your ad must contain a link`
 
@@ -50,9 +50,9 @@ DELETE_MESSAGE_AFTER: The [time](#timespan-examples) after which the message wil
 
 ### Delete old messages
 
-DELETE_OLD_MESSAGES_EVERY: The [time](#timespan-examples) after which the bot will check for old messages. Default: `30 minutes`
+CHECK_FOR_OLD_MESSAGES_EVERY: The [time](#timespan-examples) after which the bot will check for old messages. Default: `30 minutes`
 
-DELETE_OLD_MESSAGES_OLDER_THAN: The [time](#timespan-examples) after which a message will be deleted. Default: `2 weeks`
+DELETE_MESSAGES_OLDER_THAN: The [time](#timespan-examples) after which a message will be deleted. Default: `2 weeks`
 
 ### Config file (for [local](#local))
 
@@ -69,15 +69,15 @@ channels:
   - 1059677880470216744
   - 1051200829736103998
 
-# Delete message without link
+# Message when deleting a message without valid link
 message_title: Please attach a link to your ad
 message_description: If you dont attach a link to your ad, your message will be deleted.
 message_color: C62B2B
 delete_message_after: 1 minute
 
 # Delete old messages
-delete_old_messages_every: 5 minutes
-delete_old_messages_older_than: 1 day
+check_for_old_messages_every: 5 minutes
+delete_messages_older_than: 1 day
 ```
 
 ### Environment variables (for [Docker](#docker))
@@ -86,18 +86,21 @@ Use uppercase for the keys. Lists are separated by a comma. The environment vari
 
 Example of a full config (only general is required):
 
-```
+```bash
+# General
 TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 GUILDS=505059915044225046
 CHANNELS=1059677880470216744,1051200829736103998
 
+# Message when deleting a message without valid link
 MESSAGE_TITLE=Please attach a link to your ad
 MESSAGE_DESCRIPTION=If you dont attach a link to your ad, your message will be deleted.
 MESSAGE_COLOR=C62B2B
 DELETE_MESSAGE_AFTER=1 minute
 
-DELETE_OLD_MESSAGES_EVERY=5 minutes
-DELETE_OLD_MESSAGES_OLDER_THAN=1 day
+# Delete old messages
+CHECK_FOR_OLD_MESSAGES_EVERY=5 minutes
+DELETE_MESSAGES_OLDER_THAN=1 day
 ```
 
 ## Timespan Examples

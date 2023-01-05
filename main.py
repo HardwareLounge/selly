@@ -47,7 +47,7 @@ class Client(disnake.Client):
                 delete_after=config.delete_message_after
             )
 
-    @tasks.loop(seconds=config.delete_old_messages_every)
+    @tasks.loop(seconds=config.check_for_old_messages_every)
     async def delete_old_messages(self):
         print("Deleting old messages...")
         for guild_id in config.guilds:
@@ -65,7 +65,7 @@ class Client(disnake.Client):
                     if message.author.bot:
                         continue
                     # Delete old messages
-                    if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).total_seconds() > config.delete_old_messages_older_than:
+                    if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).total_seconds() > config.delete_messages_older_than:
                         print(f"Deleting message {message.id} from {message.author.id} in {repr(message.channel.id)} (created at: {message.created_at})")
                         await message.delete()
         print("Done!")

@@ -28,8 +28,8 @@ class Config:
         self.message_color = int(message_color, 16)
         self.delete_message_after = parse_timespan(self._get("delete_message_after_seconds", "30 seconds"))
         # Delete old messages
-        self.delete_old_messages_every = parse_timespan(self._get("delete_messages_every", "30 minutes"))
-        self.delete_old_messages_older_than = parse_timespan(self._get("delete_messages_older_than", "2 weeks"))
+        self.check_for_old_messages_every = parse_timespan(self._get("delete_messages_every", "30 minutes"))
+        self.delete_messages_older_than = parse_timespan(self._get("delete_messages_older_than", "2 weeks"))
 
     def _get(self, key: str, default: Optional[str] = None, is_list: bool = False) -> Union[str, List[int]]:
         """Get a value from the config"""
