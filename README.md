@@ -1,6 +1,6 @@
 # selly
 
-Manages the sales ads of the [HardwareLounge Discord server](https://discord.gg/WYXvsZGEHj "Join the Discord server").
+Manages the sales ads of the [HardwareLounge Discord server](https://discord.gg/WYXvsZGEHj "Join the Discord server"). The bot will remove old messages and check for allowed domains in messages. If a message does not contain at least one of the allowed domains, it will be deleted.
 
 ## Invite
 
