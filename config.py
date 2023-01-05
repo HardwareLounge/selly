@@ -55,14 +55,14 @@ class Config:
             raise ValueError(f"{repr(key)} is not configured")
         # Format value
         if is_int_list or is_str_list:
-            if is_int_list:
-                data_type = int
-            else:
-                data_type = str
             if not isinstance(value, list):
                 value = str(value).split(",")
             new_value = []
             for item in value:
-                new_value.append(data_type(item))
+                if is_int_list:
+                    item = int(item)
+                elif is_str_list:
+                    item = str(item).strip()
+                new_value.append(item)
             return new_value
-        return str(value)
+        return str(value).strip()
