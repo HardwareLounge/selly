@@ -28,13 +28,22 @@ class Client(disnake.Client):
         # Ignore other channels
         if message.channel.id not in config.channels:
             return
-        # Check if there is a link in the message
-        link_in_message = False
+        # Check if there is a valid link in the message
+        valid_link_in_message = False
         for word in message.content.split(" "):
-            if word.startswith("http://") or word.startswith("https://"):
-                link_in_message = True
-                break
-        if not link_in_message:
+            valid_start = False
+            if word.startswith("http://"):
+                word = word[7:]
+                valid_start = True
+            elif word.startswith("https://"):
+                word = word[8:]
+                valid_start = True
+            if valid_start:
+                for domain in config.allowed_domains:
+                    if valid_link_in_message:
+                        break
+                    valid_link_in_message = word.startswith(domain)
+        if not valid_link_in_message:
             # Delete the message
             await message.delete()
             # Send a message

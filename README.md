@@ -30,6 +30,8 @@ You can find the client ID in the [Discord Developer Portal](https://discord.com
 
 ## Configuration
 
+Only [General](#general) and [Delete messages that not contain a link with the following domains](#delete-messages-that-not-contain-a-link-with-the-following-domains) are required. The other sections have default values.
+
 ### General
 
 TOKEN: The bot token. You can find it in the [Discord Developer Portal](https://discord.com/developers/applications "Discord Developer Portal").
@@ -38,15 +40,19 @@ GUILDS: A list of guild IDs where the bot is allowed to run.
 
 CHANNELS: A list of channel IDs where the bot is allowed to run.
 
+### Delete messages that not contain a link with the following domains
+
+ALLOWED_DOMAINS: A list of domains that are allowed in a message. If a message does not contain at least one of these domains, it will be deleted.
+
 ### Message when deleting a message without valid link
 
-MESSAGE_TITLE: The title of the message that will be sent when a message is deleted. Default: `Your ad must contain a link`
+MESSAGE_TITLE: The title of the message that will be sent when a message is deleted. You can use `\n` for a line break and `{allowed_domains}` for a list of the allowed domains. Default: `Your ad must contain a sales ad link`
 
-MESSAGE_DESCRIPTION: The description of the message that will be sent when a message is deleted. Default: `Please attach a link to your ad. If your ad not contain a link, it will be deleted.`
+MESSAGE_DESCRIPTION: The description of the message that will be sent when a message is deleted. Default: `Please attach a link with at least one of the following domains:\n\n{allowed_domains}\n\nIf your ad not contain at least one of these domains, your message will be deleted.`
 
 MESSAGE_COLOR: The color of the message that will be sent when a message is deleted. Use a hexadecimal color code. Default: `FF0000`
 
-DELETE_MESSAGE_AFTER: The [time](#timespan-examples) after which the message will be deleted. Default: `30 seconds`
+DELETE_MESSAGE_AFTER: The [time](#timespan-examples) after which the message that will be sent when a message is deleted will be deleted. Default: `30 seconds`
 
 ### Delete old messages
 
@@ -58,7 +64,7 @@ DELETE_MESSAGES_OLDER_THAN: The [time](#timespan-examples) after which a message
 
 Create a `config.yml` file in the root directory of the project. Use the YAML format and use lowercase for the keys.
 
-Example of a full config (only general is required):
+Example of a full config:
 
 ```yaml
 # General
@@ -68,6 +74,10 @@ guilds:
 channels:
   - 1059677880470216744
   - 1051200829736103998
+
+# Delete messages that not contain a link with the following domains
+allowed_domains:
+  - www.ebay.com
 
 # Message when deleting a message without valid link
 message_title: Please attach a link to your ad
@@ -84,13 +94,16 @@ delete_messages_older_than: 1 day
 
 Use uppercase for the keys. Lists are separated by a comma. The environment variables will override the config file.
 
-Example of a full config (only general is required):
+Example of a full config:
 
 ```bash
 # General
 TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 GUILDS=505059915044225046
 CHANNELS=1059677880470216744,1051200829736103998
+
+# Delete messages that not contain a link with the following domains
+ALLOWED_DOMAINS=www.ebay.com
 
 # Message when deleting a message without valid link
 MESSAGE_TITLE=Please attach a link to your ad
