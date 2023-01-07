@@ -59,25 +59,28 @@ class Client(disnake.Client):
     @tasks.loop(seconds=config.check_for_old_messages_every)
     async def delete_old_messages(self):
         print("Deleting old messages...")
-        for guild_id in config.guilds:
-            guild = self.get_guild(guild_id)
-            # Skip non-existent guilds
-            if guild is None:
-                continue
-            for channel_id in config.channels:
-                channel = guild.get_channel(channel_id)
-                # Skip non-existent channels
-                if channel is None:
+        try:
+            for guild_id in config.guilds:
+                guild = self.get_guild(guild_id)
+                # Skip non-existent guilds
+                if guild is None:
                     continue
-                async for message in channel.history(limit=None):
-                    # Ignore bots
-                    if message.author.bot:
+                for channel_id in config.channels:
+                    channel = guild.get_channel(channel_id)
+                    # Skip non-existent channels
+                    if channel is None:
                         continue
-                    # Delete old messages
-                    if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).total_seconds() > config.delete_messages_older_than:
-                        print(f"Deleting message {message.id} from {message.author.id} in {repr(message.channel.id)} (created at: {message.created_at})")
-                        await message.delete()
-        print("Done!")
+                    async for message in channel.history(limit=None):
+                        # Ignore bots
+                        if message.author.bot:
+                            continue
+                        # Delete old messages
+                        if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).total_seconds() > config.delete_messages_older_than:
+                            print(f"Deleting message {message.id} from {message.author.id} in {repr(message.channel.id)} (created at: {message.created_at})")
+                            await message.delete()
+            print("Done!")
+        except Exception as e:
+            print(f"Error while deleting old messages: {e.__class__.__name__}: {e}")
 
 
 intents = disnake.Intents.default()
