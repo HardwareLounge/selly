@@ -62,11 +62,13 @@ class Client(disnake.Client):
                 guild = self.get_guild(guild_id)
                 # Skip non-existent guilds
                 if guild is None:
+                    print(f"Skipping non-existent guild {repr(guild_id)}")
                     continue
                 for channel_id in config.channels:
                     channel = guild.get_channel(channel_id)
                     # Skip non-existent channels
                     if channel is None:
+                        print(f"Skipping non-existent channel {repr(channel_id)}")
                         continue
                     async for message in channel.history(limit=None):
                         # Ignore bots and pinned messages
