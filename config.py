@@ -17,8 +17,9 @@ class Config:
         self.token = self._get("token")
         self.guilds = self._get("guilds", is_int_list=True)
         self.channels = self._get("channels", is_int_list=True)
-        # Delete messages that not contain a link with the following domains
+        # Delete conditions
         self.allowed_domains = self._get("allowed_domains", is_str_list=True)
+        self.allowed_roles = self._get("allowed_roles", is_int_list=True)
         # Message when deleting a message without valid link
         self.message_title = self._get("message_title", "Your ad must contain a sales ad link")
         formated_allowed_domains = []

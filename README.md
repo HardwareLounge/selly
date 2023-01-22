@@ -30,7 +30,7 @@ You can find the client ID in the [Discord Developer Portal](https://discord.com
 
 ## Configuration
 
-Only [General](#general) and [Delete messages that not contain a link with the following domains](#delete-messages-that-not-contain-a-link-with-the-following-domains) are required. The other sections have default values.
+Only [General](#general) and [Delete conditions](#delete-conditions) are required. The other sections have default values.
 
 ### General
 
@@ -40,9 +40,11 @@ GUILDS: A list of guild IDs where the bot is allowed to run.
 
 CHANNELS: A list of channel IDs where the bot is allowed to run.
 
-### Delete messages that not contain a link with the following domains
+### Delete conditions
 
 ALLOWED_DOMAINS: A list of domains that are allowed in a message. If a message does not contain at least one of these domains, it will be deleted.
+
+ALLOWED_ROLES: A list of role IDs that are allowed to post messages without a valid link. If a message does not contain at least one of the allowed domains, but the author has at least one of the allowed roles, the message will not be deleted.
 
 ### Message when deleting a message without valid link
 
@@ -75,9 +77,12 @@ channels:
   - 1059677880470216744
   - 1051200829736103998
 
-# Delete messages that not contain a link with the following domains
+# Delete conditions
 allowed_domains:
   - www.ebay.com
+allowed_roles:
+  - 700795226817691668
+  - 505097770252632081
 
 # Message when deleting a message without valid link
 message_title: Please attach a link to your ad
@@ -102,8 +107,9 @@ TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 GUILDS=505059915044225046
 CHANNELS=1059677880470216744,1051200829736103998
 
-# Delete messages that not contain a link with the following domains
+# Delete conditions
 ALLOWED_DOMAINS=www.ebay.com
+ALLOWED_ROLES=700795226817691668,505097770252632081
 
 # Message when deleting a message without valid link
 MESSAGE_TITLE=Please attach a link to your ad

@@ -19,15 +19,13 @@ class Client(disnake.Client):
         self.delete_old_messages.start()
 
     async def on_message(self, message: disnake.Message):
-        # Ignore bots
-        if message.author.bot:
+        # Ignore bots, other guilds and other channels
+        if message.author.bot or message.guild.id not in config.guilds or message.channel.id not in config.channels:
             return
-        # Ignore other guilds
-        if message.guild.id not in config.guilds:
-            return
-        # Ignore other channels
-        if message.channel.id not in config.channels:
-            return
+        # Ignore messages with allowed roles
+        for role in message.author.roles:
+            if role.id in config.allowed_roles:
+                return
         # Check if there is a valid link in the message
         valid_link_in_message = False
         for word in message.content.lower().split(" "):
