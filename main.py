@@ -71,8 +71,8 @@ class Client(disnake.Client):
                     if channel is None:
                         continue
                     async for message in channel.history(limit=None):
-                        # Ignore bots
-                        if message.author.bot:
+                        # Ignore bots and pinned messages
+                        if message.author.bot or message.pinned:
                             continue
                         # Delete old messages
                         if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).total_seconds() > config.delete_messages_older_than:

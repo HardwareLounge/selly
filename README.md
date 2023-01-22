@@ -58,7 +58,7 @@ DELETE_MESSAGE_AFTER: The [time](#timespan-examples) after which the message tha
 
 CHECK_FOR_OLD_MESSAGES_EVERY: The [time](#timespan-examples) after which the bot will check for old messages. Default: `30 minutes`
 
-DELETE_MESSAGES_OLDER_THAN: The [time](#timespan-examples) after which a message will be deleted. Default: `2 weeks`
+DELETE_MESSAGES_OLDER_THAN: The [time](#timespan-examples) after which a message will be deleted. Pinned messaged and messages from bots will be ignored. Default: `2 weeks`
 
 ### Config file (for [local](#local))
 
