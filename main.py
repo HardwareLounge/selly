@@ -72,9 +72,13 @@ class Client(disnake.Client):
                         # Ignore bots and pinned messages
                         if message.author.bot or message.pinned:
                             continue
-                        # Delete old messages
                         if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).total_seconds() > config.delete_messages_older_than:
+                            # Delete old message
                             print(f"Deleting message {message.id} from {message.author.id} in {repr(message.channel.id)} (created at: {message.created_at})")
+                            await message.delete()
+                        elif message.author.id == self.user.id:
+                            # Delete own message
+                            print(f"Deleting own message {message.id} in {repr(message.channel.id)}")
                             await message.delete()
             print("Done!")
         except Exception as e:
