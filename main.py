@@ -28,19 +28,22 @@ class Client(disnake.Client):
                 return
         # Check if there is a valid link in the message
         valid_link_in_message = False
-        for word in message.content.lower().split(" "):
-            valid_start = False
-            if word.startswith("http://"):
-                word = word[7:]
-                valid_start = True
-            elif word.startswith("https://"):
-                word = word[8:]
-                valid_start = True
-            if valid_start:
-                for domain in config.allowed_domains:
-                    if valid_link_in_message:
-                        break
-                    valid_link_in_message = word.startswith(domain.lower())
+        for line in message.content.lower().split("\n"):
+            for word in line.split(" "):
+                valid_start = False
+                if word.startswith("http://"):
+                    word = word[7:]
+                    valid_start = True
+                elif word.startswith("https://"):
+                    word = word[8:]
+                    valid_start = True
+                if valid_start:
+                    for domain in config.allowed_domains:
+                        if valid_link_in_message:
+                            break
+                        valid_link_in_message = word.startswith(domain.lower())
+            if valid_link_in_message:
+                break
         if not valid_link_in_message:
             # Delete the message
             await message.delete()
