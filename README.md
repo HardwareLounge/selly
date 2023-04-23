@@ -48,9 +48,9 @@ ALLOWED_ROLES: A list of role IDs that are allowed to post messages without a va
 
 ### Message when deleting a message without valid link
 
-MESSAGE_TITLE: The title of the message that will be sent when a message is deleted. You can use `\n` for a line break and `{allowed_domains}` for a list of the allowed domains. Default: `Your ad must contain a sales ad link`
+MESSAGE_TITLE: The title of the message that will be sent when a message is deleted. Default: `Your ad must contain a sales ad link`
 
-MESSAGE_DESCRIPTION: The description of the message that will be sent when a message is deleted. Default: `Please attach a link with at least one of the following domains:\n\n{allowed_domains}\n\nIf your ad not contain at least one of these domains, your message will be deleted.`
+MESSAGE_DESCRIPTION: The description of the message that will be sent when a message is deleted. You can use `\n` for a line break and `{allowed_domains}` for a list of the allowed domains. Default: `Please attach a link with at least one of the following domains:\n\n{allowed_domains}\n\nIf your ad not contain at least one of these domains, your message will be deleted.`
 
 MESSAGE_COLOR: The color of the message that will be sent when a message is deleted. Use a hexadecimal color code. Default: `FF0000`
 
