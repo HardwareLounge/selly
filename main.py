@@ -46,6 +46,7 @@ class Client(disnake.Client):
                 break
         if not valid_link_in_message:
             # Delete the message
+            print(f"Deleting message {repr(message.content)} ({message.id}) from {message.author.id}")
             await message.delete()
             # Send a message
             await message.channel.send(
@@ -65,18 +66,18 @@ class Client(disnake.Client):
                 guild = self.get_guild(guild_id)
                 # Skip non-existent guilds
                 if guild is None:
-                    print(f"Skipping non-existent guild {repr(guild_id)}")
+                    print(f"Skipping non-existent guild {guild_id}")
                     continue
                 for channel_id in config.channels:
                     channel = guild.get_channel(channel_id)
                     # Skip non-existent channels
                     if channel is None:
-                        print(f"Skipping non-existent channel {repr(channel_id)}")
+                        print(f"Skipping non-existent channel {channel_id}")
                         continue
                     async for message in channel.history(limit=None):
                         # Delete own messages
                         if message.author.id == self.user.id:
-                            print(f"Deleting own message {message.id} in {repr(message.channel.id)}")
+                            print(f"Deleting own message {message.id} in {message.channel.id}")
                             await message.delete()
                             continue
                         # Ignore bots and pinned messages
@@ -84,7 +85,7 @@ class Client(disnake.Client):
                             continue
                         # Delete old messages
                         if (datetime.datetime.now(datetime.timezone.utc) - message.created_at).total_seconds() > config.delete_messages_older_than:
-                            print(f"Deleting message {message.id} from {message.author.id} in {repr(message.channel.id)} (created at: {message.created_at})")
+                            print(f"Deleting message {message.id} from {message.author.id} in {message.channel.id} (created at: {message.created_at})")
                             await message.delete()
             print("Done!")
         except Exception as e:
