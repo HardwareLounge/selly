@@ -41,7 +41,7 @@ class Client(disnake.Client):
                     for domain in config.allowed_domains:
                         if valid_link_in_message:
                             break
-                        valid_link_in_message = word.startswith(domain.lower())
+                        valid_link_in_message = word.startswith(domain.lower()) or (config.allow_www_subdomains and not domain.startswith("www.") and word.startswith(f"www.{domain.lower()}"))
             if valid_link_in_message:
                 break
         if not valid_link_in_message:

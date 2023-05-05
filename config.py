@@ -19,6 +19,13 @@ class Config:
         self.channels = self._get("channels", is_int_list=True)
         # Delete conditions
         self.allowed_domains = self._get("allowed_domains", is_str_list=True)
+        allow_www_subdomains_str = self._get("allow_www_subdomains").lower()
+        if allow_www_subdomains_str in ("true", "1", "yes", "y"):
+            self.allow_www_subdomains = True
+        elif allow_www_subdomains_str in ("false", "0", "no", "n"):
+            self.allow_www_subdomains = False
+        else:
+            raise ValueError(f"{repr(allow_www_subdomains_str)} is not a valid value for `allow_www_subdomains`")
         self.allowed_roles = self._get("allowed_roles", is_int_list=True)
         # Message when deleting a message without valid link
         self.message_title = self._get("message_title", "Your ad must contain a sales ad link")

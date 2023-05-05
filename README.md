@@ -44,6 +44,8 @@ CHANNELS: A list of channel IDs where the bot is allowed to run.
 
 ALLOWED_DOMAINS: A list of domains that are allowed in a message. If a message does not contain at least one of these domains, it will be deleted.
 
+ALLOW_WWW_SUBDOMAINS: If this is set to `true`, the bot will also allow the `www` subdomain of the allowed domains. If a configured allowed domain contains a `www` subdomain, this will be ignored. Set this to `false` if you want to allow only the exact domain.
+
 ALLOWED_ROLES: A list of role IDs that are allowed to post messages without a valid link. If a message does not contain at least one of the allowed domains, but the author has at least one of the allowed roles, the message will not be deleted.
 
 ### Message when deleting a message without valid link
@@ -79,7 +81,8 @@ channels:
 
 # Delete conditions
 allowed_domains:
-  - www.ebay.com
+  - ebay.com
+allow_www_subdomains: true
 allowed_roles:
   - 700795226817691668
   - 505097770252632081
@@ -108,7 +111,8 @@ GUILDS=505059915044225046
 CHANNELS=1059677880470216744,1051200829736103998
 
 # Delete conditions
-ALLOWED_DOMAINS=www.ebay.com
+ALLOWED_DOMAINS=ebay.com
+ALLOW_WWW_SUBDOMAINS=true
 ALLOWED_ROLES=700795226817691668,505097770252632081
 
 # Message when deleting a message without valid link
