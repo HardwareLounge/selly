@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM debian:latest
+FROM debian:bullseye-slim
 
 # Install python3
 RUN apt-get update
