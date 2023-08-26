@@ -26,7 +26,7 @@ You can find the client ID in the [Discord Developer Portal](https://discord.com
 
 1. `docker build -t selly .`
 
-2. `docker run -d --name selly -e TOKEN=YOUR_TOKEN -e GUILDS=YOUR_GUILDS [...] selly` (Add the [environment variables](#configuration) with `-e`)
+2. `docker run -d --name selly -e TOKEN=YOUR_TOKEN -e CHANNELS=YOUR_CHANNELS [...] selly` (Add the [environment variables](#configuration) with `-e`)
 
 ## Configuration
 
@@ -35,8 +35,6 @@ Only [General](#general) and [Delete conditions](#delete-conditions) are require
 ### General
 
 TOKEN: The bot token. You can find it in the [Discord Developer Portal](https://discord.com/developers/applications "Discord Developer Portal").
-
-GUILDS: A list of guild IDs where the bot is allowed to run.
 
 CHANNELS: A list of channel IDs where the bot is allowed to run.
 
@@ -73,8 +71,6 @@ Example of a full config:
 ```yaml
 # General
 token: xxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-guilds:
-  - 505059915044225046
 channels:
   - 1059677880470216744
   - 1051200829736103998
@@ -107,7 +103,6 @@ Example of a full config:
 ```bash
 # General
 TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxx.xxxxxxxxxx.xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-GUILDS=505059915044225046
 CHANNELS=1059677880470216744,1051200829736103998
 
 # Delete conditions

@@ -15,7 +15,6 @@ class Config:
             self._yml = {}
         # General
         self.token = self._get("token")
-        self.guilds = self._get("guilds", is_int_list=True)
         self.channels = self._get("channels", is_int_list=True)
         # Delete conditions
         self.allowed_domains = self._get("allowed_domains", is_str_list=True)
